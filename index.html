@@ -28,13 +28,12 @@
 
       --shadow: rgba(0, 0, 0, 0.62);
 
-      /* candle glow – ciepły bursztyn */
+      /* candle glow */
       --glow-1: rgba(176, 122, 74, 0.22);
       --glow-2: rgba(231, 214, 188, 0.12);
 
-      /* ✅ złoto w stylu Dark Academia (antyczne, przygaszone) */
+      /* złoto (antyczne) */
       --gold: rgba(212, 179, 112, 0.92);
-      --gold-soft: rgba(212, 179, 112, 0.58);
     }
 
     *{ box-sizing: border-box; }
@@ -52,7 +51,6 @@
       overflow-x: hidden;
     }
 
-    /* Ziarno / film */
     body::before{
       content:"";
       position: fixed;
@@ -84,7 +82,7 @@
       background: linear-gradient(180deg, var(--paper) 0%, transparent 72%);
     }
 
-    /* ✅ Twoje zdjęcie jako tło (ustawione na 0.15 jak chciałeś) */
+    /* tło zdjęcia */
     .bgimg{
       position: absolute;
       inset: 0;
@@ -97,7 +95,6 @@
       pointer-events: none;
     }
 
-    /* premium warstwy tła */
     .voucher::before{
       content:"";
       position:absolute;
@@ -111,7 +108,6 @@
       pointer-events:none;
     }
 
-    /* poświata świecy */
     .voucher::after{
       content:"";
       position:absolute;
@@ -149,22 +145,22 @@
       background: linear-gradient(90deg, transparent, var(--line), transparent);
     }
 
-    /* ✅ MNIEJSZY nagłówek */
+    /* ✅ WRÓT DO POPRZEDNIEJ WIELKOŚCI */
     h1{
       margin: 0;
       font-family: "Cormorant Garamond", serif;
       font-weight: 600;
-      font-size: clamp(24px, 3.4vw, 38px);
+      font-size: clamp(28px, 4.0vw, 46px);
       letter-spacing: 0.02em;
-      line-height: 1.10;
+      line-height: 1.08;
       text-shadow:
         0 1px 0 rgba(0,0,0,0.35),
         0 12px 30px rgba(0,0,0,0.45);
     }
 
-    /* ✅ „Dla Dominiki” w antycznym złocie */
+    /* ✅ WIĘKSZY ODSTĘP OD H1 */
     .subtitle{
-      margin-top: -6px;
+      margin-top: 6px;  /* było -6px → teraz jest WYRAŹNY odstęp */
       font-family: "Cormorant Garamond", serif;
       font-weight: 600;
       font-size: clamp(18px, 2.2vw, 24px);
@@ -192,7 +188,6 @@
       display: grid;
       gap: 14px;
       text-align: left;
-
       background:
         linear-gradient(180deg, rgba(231,214,188,0.09), rgba(0,0,0,0.06)),
         radial-gradient(700px 260px at 40% 0%, rgba(176,122,74,0.10), transparent 60%);
@@ -246,7 +241,6 @@
       color: rgba(231,214,188,0.78);
     }
 
-    /* Corner marks */
     .mark{
       position:absolute;
       width: 46px;
