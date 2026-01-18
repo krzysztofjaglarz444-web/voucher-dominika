@@ -18,7 +18,7 @@
       --bg-2: #0c0a08;
       --bg-3: #060504;
 
-      --paper: rgba(231, 214, 188, 0.06);     /* ciepły papier */
+      --paper: rgba(231, 214, 188, 0.06);
       --paper-2: rgba(231, 214, 188, 0.10);
 
       --ink: rgba(247, 241, 232, 0.92);
@@ -27,20 +27,12 @@
       --line: rgba(231, 214, 188, 0.28);
       --line-2: rgba(231, 214, 188, 0.14);
 
-      --brown-glow: rgba(122, 82, 52, 0.22);  /* “kawowy” poblask */
       --shadow: rgba(0, 0, 0, 0.60);
-
-      /* kolory ilustracji */
-      --ivory: rgba(231, 214, 188, 0.92);     /* świeca, papier */
-      --ivory-soft: rgba(231, 214, 188, 0.55);
-      --metal: rgba(10, 9, 8, 0.55);          /* stojak */
-      --metal-2: rgba(10, 9, 8, 0.75);
-      --stroke: rgba(231, 214, 188, 0.22);    /* delikatny kontur */
-      --stroke2: rgba(231, 214, 188, 0.14);
     }
 
     *{ box-sizing: border-box; }
     html, body { height: 100%; }
+
     body{
       margin: 0;
       color: var(--ink);
@@ -53,7 +45,7 @@
       overflow-x: hidden;
     }
 
-    /* subtelne ziarno */
+    /* Subtelne ziarno */
     body::before{
       content:"";
       position: fixed;
@@ -76,7 +68,7 @@
     }
 
     .voucher{
-      width: min(920px, 94vw);
+      width: min(880px, 94vw);
       background: linear-gradient(180deg, var(--paper) 0%, transparent 70%);
       border: 1px solid var(--line-2);
       border-radius: 24px;
@@ -85,6 +77,7 @@
       overflow: hidden;
     }
 
+    /* inner glow + vignette */
     .voucher::before{
       content:"";
       position:absolute;
@@ -97,50 +90,12 @@
       pointer-events:none;
     }
 
-    /* ✅ NOWY UKŁAD: ilustracja z boku + treść */
-    .layout{
-      position: relative;
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 8px;
-      padding: clamp(22px, 4.5vw, 54px);
-      align-items: center;
-    }
-
-    /* lewa kolumna z ilustracją */
-    .side-art{
-      position: relative;
-      display: grid;
-      place-items: center;
-      padding: 10px 6px;
-      opacity: 0.95;
-    }
-
-    /* delikatne tło pod ilustracją */
-    .side-art::before{
-      content:"";
-      position:absolute;
-      inset: 0;
-      border-radius: 18px;
-      background: radial-gradient(220px 220px at 50% 35%, rgba(122,82,52,0.18), transparent 60%);
-      opacity: 0.7;
-      pointer-events: none;
-    }
-
-    .art{
-      position: relative;
-      width: min(240px, 70vw);
-      height: auto;
-      filter: drop-shadow(0 14px 30px rgba(0,0,0,0.55));
-    }
-
-    /* prawa kolumna treści */
     .content{
       position: relative;
+      padding: clamp(26px, 5vw, 54px);
       display: grid;
       gap: 18px;
       text-align: center;
-      padding: 6px 6px;
     }
 
     .topline{
@@ -160,7 +115,6 @@
       background: linear-gradient(90deg, transparent, var(--line), transparent);
     }
 
-    /* ✅ mniejszy nagłówek jak ustaliliśmy */
     h1{
       margin: 0;
       font-family: "Cormorant Garamond", serif;
@@ -240,7 +194,7 @@
       color: rgba(231,214,188,0.78);
     }
 
-    /* corner marks */
+    /* Corner marks */
     .mark{
       position:absolute;
       width: 46px;
@@ -255,27 +209,6 @@
     .m2{ top: -10px; right: -10px; }
     .m3{ bottom: -10px; left: -10px; }
     .m4{ bottom: -10px; right: -10px; }
-
-    /* ✅ Mobile: ilustracja idzie nad treść */
-    @media (max-width: 720px){
-      .layout{
-        grid-template-columns: 1fr;
-        gap: 6px;
-      }
-      .side-art{
-        padding: 6px 6px 0;
-      }
-      .art{
-        width: min(280px, 80vw);
-      }
-    }
-
-    @media (max-width: 520px){
-      .details{ padding: 14px 12px; }
-      .row{ padding: 8px 8px; }
-      .value{ font-size: 15px; }
-      .topline{ font-size: 11px; letter-spacing: 0.24em; }
-    }
   </style>
 </head>
 
@@ -287,173 +220,41 @@
       <span class="mark m3"></span>
       <span class="mark m4"></span>
 
-      <div class="layout">
-        <!-- ✅ ILUSTRACJA Z BOKU: świeca na stojaku + otwarta księga -->
-        <aside class="side-art" aria-hidden="true">
-          <svg class="art" viewBox="0 0 280 520" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="candleBody" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0" stop-color="rgba(231,214,188,0.98)"/>
-                <stop offset="1" stop-color="rgba(231,214,188,0.70)"/>
-              </linearGradient>
+      <div class="content">
+        <div class="topline">
+          <span class="rule" aria-hidden="true"></span>
+          <span>Voucher Urodzinowy</span>
+          <span class="rule" aria-hidden="true"></span>
+        </div>
 
-              <linearGradient id="metalBody" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0" stop-color="rgba(10,9,8,0.78)"/>
-                <stop offset="1" stop-color="rgba(10,9,8,0.52)"/>
-              </linearGradient>
+        <header>
+          <h1>Wszystkiego najlepszego</h1>
+          <div class="subtitle">Dla Dominiki</div>
+        </header>
 
-              <radialGradient id="flameWarm" cx="50%" cy="45%" r="70%">
-                <stop offset="0" stop-color="rgba(231,214,188,0.75)"/>
-                <stop offset="1" stop-color="rgba(122,82,52,0.16)"/>
-              </radialGradient>
+        <div class="divider" aria-hidden="true"></div>
 
-              <radialGradient id="aura" cx="50%" cy="40%" r="70%">
-                <stop offset="0" stop-color="rgba(122,82,52,0.22)"/>
-                <stop offset="1" stop-color="rgba(122,82,52,0.00)"/>
-              </radialGradient>
-
-              <linearGradient id="paper" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0" stop-color="rgba(231,214,188,0.55)"/>
-                <stop offset="1" stop-color="rgba(231,214,188,0.26)"/>
-              </linearGradient>
-            </defs>
-
-            <!-- delikatna aura dookoła (ciepły brąz) -->
-            <ellipse cx="140" cy="130" rx="110" ry="120" fill="url(#aura)" opacity="0.75"/>
-
-            <!-- ✅ ŚWIECA: DUŻA, DŁUGA, WYPEŁNIONA -->
-            <!-- płomień -->
-            <path d="M140 34
-                     C126 54, 122 84, 140 100
-                     C158 84, 154 54, 140 34Z"
-                  fill="url(#flameWarm)"
-                  stroke="rgba(231,214,188,0.30)" stroke-width="1.2"/>
-
-            <!-- knot -->
-            <path d="M140 100 C140 110, 140 118, 140 124"
-                  stroke="rgba(231,214,188,0.42)" stroke-width="1.5" fill="none"/>
-
-            <!-- świeca korpus -->
-            <rect x="124" y="124" width="32" height="220" rx="12"
-                  fill="url(#candleBody)"
-                  stroke="rgba(231,214,188,0.18)" stroke-width="1.2"/>
-
-            <!-- delikatne cienie wosku -->
-            <path d="M127 160 C136 154, 144 154, 153 160" fill="none"
-                  stroke="rgba(122,82,52,0.10)" stroke-width="1.2" opacity="0.8"/>
-            <path d="M127 200 C136 194, 144 194, 153 200" fill="none"
-                  stroke="rgba(122,82,52,0.08)" stroke-width="1.2" opacity="0.75"/>
-            <path d="M127 240 C136 234, 144 234, 153 240" fill="none"
-                  stroke="rgba(122,82,52,0.06)" stroke-width="1.2" opacity="0.65"/>
-
-            <!-- ✅ STOJAK: DŁUŻSZY I WYPEŁNIONY -->
-            <!-- talerzyk (górny uchwyt) -->
-            <path d="M102 348
-                     C118 336, 162 336, 178 348
-                     C164 360, 116 360, 102 348Z"
-                  fill="rgba(10,9,8,0.38)"
-                  stroke="rgba(231,214,188,0.16)" stroke-width="1.2"/>
-
-            <!-- szyjka -->
-            <path d="M140 360
-                     C140 380, 140 392, 140 410"
-                  fill="none"
-                  stroke="rgba(231,214,188,0.16)" stroke-width="1.5"/>
-
-            <!-- kielich -->
-            <path d="M112 410
-                     C122 392, 158 392, 168 410
-                     C160 430, 120 430, 112 410Z"
-                  fill="url(#metalBody)"
-                  stroke="rgba(231,214,188,0.14)" stroke-width="1.2"/>
-
-            <!-- podstawa (większa, masywna) -->
-            <path d="M92 452
-                     C112 432, 168 432, 188 452
-                     C170 474, 110 474, 92 452Z"
-                  fill="rgba(10,9,8,0.62)"
-                  stroke="rgba(231,214,188,0.12)" stroke-width="1.2"/>
-
-            <!-- cień podstawy -->
-            <ellipse cx="140" cy="490" rx="58" ry="18" fill="rgba(0,0,0,0.38)"/>
-
-            <!-- ✅ OTWARTA KSIĘGA obok świecy (perspektywa + proporcje) -->
-            <!-- książka stoi lekko "z przodu i z boku", jak na stole -->
-            <!-- lewa kartka -->
-            <path d="M26 338
-                     C44 318, 86 312, 118 322
-                     C116 362, 80 392, 36 388
-                     C26 372, 22 356, 26 338Z"
-                  fill="url(#paper)"
-                  stroke="rgba(231,214,188,0.14)" stroke-width="1.2"/>
-
-            <!-- prawa kartka -->
-            <path d="M118 322
-                     C152 312, 198 318, 218 340
-                     C222 356, 218 372, 206 388
-                     C162 394, 122 362, 118 322Z"
-                  fill="rgba(231,214,188,0.30)"
-                  stroke="rgba(231,214,188,0.12)" stroke-width="1.2"/>
-
-            <!-- grzbiet (ciemniejsza linia) -->
-            <path d="M118 322
-                     C120 350, 120 370, 118 392"
-                  fill="none" stroke="rgba(122,82,52,0.20)" stroke-width="2" opacity="0.8"/>
-
-            <!-- delikatne linie "tekstu" -->
-            <path d="M42 346 L102 338" stroke="rgba(122,82,52,0.12)" stroke-width="1.1" opacity="0.8"/>
-            <path d="M40 362 L96 354"  stroke="rgba(122,82,52,0.10)" stroke-width="1.1" opacity="0.75"/>
-            <path d="M44 378 L92 370"  stroke="rgba(122,82,52,0.08)" stroke-width="1.1" opacity="0.7"/>
-
-            <path d="M134 338 L202 346" stroke="rgba(122,82,52,0.10)" stroke-width="1.1" opacity="0.75"/>
-            <path d="M140 354 L206 362" stroke="rgba(122,82,52,0.08)" stroke-width="1.1" opacity="0.7"/>
-            <path d="M146 370 L200 378" stroke="rgba(122,82,52,0.07)" stroke-width="1.1" opacity="0.65"/>
-
-            <!-- drobny pył / iskierki -->
-            <circle cx="62" cy="126" r="1.2" fill="rgba(231,214,188,0.18)"/>
-            <circle cx="210" cy="108" r="1.1" fill="rgba(231,214,188,0.16)"/>
-            <circle cx="232" cy="152" r="1.0" fill="rgba(231,214,188,0.14)"/>
-            <circle cx="46" cy="170" r="1.0" fill="rgba(231,214,188,0.12)"/>
-          </svg>
-        </aside>
-
-        <!-- TREŚĆ -->
-        <div class="content">
-          <div class="topline">
-            <span class="rule" aria-hidden="true"></span>
-            <span>Voucher Urodzinowy</span>
-            <span class="rule" aria-hidden="true"></span>
+        <section class="details" aria-label="Szczegóły vouchera">
+          <div class="row">
+            <div class="label">Rodzaj</div>
+            <div class="value">Tajemnicza podróż</div>
           </div>
 
-          <header>
-            <h1>Wszystkiego najlepszego</h1>
-            <div class="subtitle">Dla Dominiki</div>
-          </header>
+          <div class="row">
+            <div class="label">Termin wykorzystania</div>
+            <div class="value">Kwiecień 2026</div>
+          </div>
 
-          <div class="divider" aria-hidden="true"></div>
+          <div class="row">
+            <div class="label">Organizator</div>
+            <div class="value">Krzysztof</div>
+          </div>
+        </section>
 
-          <section class="details" aria-label="Szczegóły vouchera">
-            <div class="row">
-              <div class="label">Rodzaj</div>
-              <div class="value">Tajemnicza podróż</div>
-            </div>
-
-            <div class="row">
-              <div class="label">Termin wykorzystania</div>
-              <div class="value">Kwiecień 2026</div>
-            </div>
-
-            <div class="row">
-              <div class="label">Organizator</div>
-              <div class="value">Krzysztof</div>
-            </div>
-          </section>
-
-          <footer class="footer">
-            <em>„Życie niepoddane refleksji nie jest warte przeżycia.”</em><br />
-            — Sokrates
-          </footer>
-        </div>
+        <footer class="footer">
+          <em>„Życie niepoddane refleksji nie jest warte przeżycia.”</em><br />
+          — Sokrates
+        </footer>
       </div>
     </section>
   </main>
