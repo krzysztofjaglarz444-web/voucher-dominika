@@ -31,6 +31,10 @@
       /* candle glow – ciepły bursztyn */
       --glow-1: rgba(176, 122, 74, 0.22);
       --glow-2: rgba(231, 214, 188, 0.12);
+
+      /* ✅ złoto w stylu Dark Academia (antyczne, przygaszone) */
+      --gold: rgba(212, 179, 112, 0.92);
+      --gold-soft: rgba(212, 179, 112, 0.58);
     }
 
     *{ box-sizing: border-box; }
@@ -80,20 +84,20 @@
       background: linear-gradient(180deg, var(--paper) 0%, transparent 72%);
     }
 
-    /* ✅ Twoje zdjęcie jako bardzo przezroczyste tło */
+    /* ✅ Twoje zdjęcie jako tło (ustawione na 0.15 jak chciałeś) */
     .bgimg{
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.15; /* <--- przezroczystość zdjęcia */
+      opacity: 0.15;
       filter: blur(1.4px) contrast(1.05) saturate(0.85);
       transform: scale(1.04);
       pointer-events: none;
     }
 
-    /* premium warstwy tła: winieta + glow + “papier” */
+    /* premium warstwy tła */
     .voucher::before{
       content:"";
       position:absolute;
@@ -107,7 +111,7 @@
       pointer-events:none;
     }
 
-    /* ✅ poświata świecy (światło bez świecy) */
+    /* poświata świecy */
     .voucher::after{
       content:"";
       position:absolute;
@@ -145,26 +149,30 @@
       background: linear-gradient(90deg, transparent, var(--line), transparent);
     }
 
+    /* ✅ MNIEJSZY nagłówek */
     h1{
       margin: 0;
       font-family: "Cormorant Garamond", serif;
       font-weight: 600;
-      font-size: clamp(28px, 4.0vw, 46px);
+      font-size: clamp(24px, 3.4vw, 38px);
       letter-spacing: 0.02em;
-      line-height: 1.08;
+      line-height: 1.10;
       text-shadow:
         0 1px 0 rgba(0,0,0,0.35),
         0 12px 30px rgba(0,0,0,0.45);
     }
 
+    /* ✅ „Dla Dominiki” w antycznym złocie */
     .subtitle{
       margin-top: -6px;
       font-family: "Cormorant Garamond", serif;
-      font-weight: 500;
+      font-weight: 600;
       font-size: clamp(18px, 2.2vw, 24px);
-      color: rgba(247,241,232,0.66);
+      color: var(--gold);
       letter-spacing: 0.04em;
-      text-shadow: 0 10px 26px rgba(0,0,0,0.35);
+      text-shadow:
+        0 1px 0 rgba(0,0,0,0.40),
+        0 14px 30px rgba(0,0,0,0.45);
     }
 
     .divider{
@@ -259,7 +267,7 @@
       .row{ padding: 8px 8px; }
       .value{ font-size: 15px; }
       .topline{ font-size: 11px; letter-spacing: 0.24em; }
-      .bgimg{ opacity: 0.07; }
+      .bgimg{ opacity: 0.12; }
     }
   </style>
 </head>
@@ -267,7 +275,6 @@
 <body>
   <main class="wrap">
     <section class="voucher" aria-label="Voucher urodzinowy">
-      <!-- ✅ zdjęcie w tle (przezroczyste) -->
       <img class="bgimg" src="Brno-Catedral.png" alt="">
 
       <span class="mark m1"></span>
