@@ -13,14 +13,22 @@
 
   <style>
     :root{
-      --bg: #0b0a09;
-      --paper: rgba(245, 239, 227, 0.06);
-      --paper-2: rgba(245, 239, 227, 0.09);
-      --ink: rgba(246, 241, 231, 0.92);
-      --muted: rgba(246, 241, 231, 0.66);
-      --line: rgba(246, 241, 231, 0.22);
-      --line-2: rgba(246, 241, 231, 0.12);
-      --shadow: rgba(0, 0, 0, 0.55);
+      /* Dark Academia: cieplejsze brązy / sepia */
+      --bg-1: #070605;
+      --bg-2: #0c0a08;
+      --bg-3: #060504;
+
+      --paper: rgba(231, 214, 188, 0.06);     /* ciepły papier */
+      --paper-2: rgba(231, 214, 188, 0.10);
+
+      --ink: rgba(247, 241, 232, 0.92);
+      --muted: rgba(247, 241, 232, 0.66);
+
+      --line: rgba(231, 214, 188, 0.28);
+      --line-2: rgba(231, 214, 188, 0.14);
+
+      --brown-glow: rgba(122, 82, 52, 0.22);  /* “kawowy” poblask */
+      --shadow: rgba(0, 0, 0, 0.60);
     }
 
     *{ box-sizing: border-box; }
@@ -28,24 +36,28 @@
     body{
       margin: 0;
       color: var(--ink);
-      background: radial-gradient(1200px 800px at 30% 10%, rgba(255,255,255,0.05), transparent 60%),
-                  radial-gradient(900px 700px at 70% 90%, rgba(255,255,255,0.04), transparent 65%),
-                  linear-gradient(180deg, #070606 0%, #0b0a09 35%, #070606 100%);
+
+      /* cieplejszy, brązowy klimat */
+      background:
+        radial-gradient(1100px 760px at 28% 12%, rgba(122, 82, 52, 0.16), transparent 60%),
+        radial-gradient(900px 680px at 78% 88%, rgba(231, 214, 188, 0.06), transparent 62%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 40%, var(--bg-3) 100%);
+
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       letter-spacing: 0.2px;
       overflow-x: hidden;
     }
 
-    /* Subtle paper grain */
+    /* Subtelne ziarno + “papier” */
     body::before{
       content:"";
       position: fixed;
       inset: 0;
       pointer-events: none;
       background-image:
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.04) 0 1px, transparent 1px),
-        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.03) 0 1px, transparent 1px),
-        radial-gradient(circle at 40% 80%, rgba(255,255,255,0.02) 0 1px, transparent 1px);
+        radial-gradient(circle at 20% 30%, rgba(231,214,188,0.05) 0 1px, transparent 1px),
+        radial-gradient(circle at 70% 60%, rgba(231,214,188,0.04) 0 1px, transparent 1px),
+        radial-gradient(circle at 45% 82%, rgba(231,214,188,0.03) 0 1px, transparent 1px);
       background-size: 120px 120px, 140px 140px, 160px 160px;
       opacity: 0.35;
       mix-blend-mode: soft-light;
@@ -55,37 +67,37 @@
       min-height: 100%;
       display: grid;
       place-items: center;
-      padding: 36px 18px;
+      padding: 38px 18px;
     }
 
     .voucher{
-      width: min(860px, 92vw);
-      background: linear-gradient(180deg, var(--paper) 0%, transparent 65%);
+      width: min(880px, 94vw);
+      background: linear-gradient(180deg, var(--paper) 0%, transparent 70%);
       border: 1px solid var(--line-2);
-      border-radius: 22px;
-      box-shadow: 0 22px 70px var(--shadow);
+      border-radius: 24px;
+      box-shadow: 0 26px 80px var(--shadow);
       position: relative;
       overflow: hidden;
     }
 
-    /* inner glow and vignette */
+    /* inner glow + brązowy poblask */
     .voucher::before{
       content:"";
       position:absolute;
       inset:-2px;
       background:
-        radial-gradient(900px 520px at 50% 20%, rgba(245,239,227,0.10), transparent 60%),
-        radial-gradient(700px 420px at 20% 80%, rgba(245,239,227,0.06), transparent 60%),
-        radial-gradient(900px 600px at 80% 85%, rgba(0,0,0,0.65), transparent 55%);
-      opacity: 0.9;
+        radial-gradient(900px 540px at 50% 16%, rgba(231,214,188,0.10), transparent 60%),
+        radial-gradient(720px 440px at 20% 78%, rgba(122,82,52,0.18), transparent 60%),
+        radial-gradient(980px 620px at 84% 88%, rgba(0,0,0,0.70), transparent 55%);
+      opacity: 0.95;
       pointer-events:none;
     }
 
     .content{
       position: relative;
-      padding: clamp(26px, 5vw, 52px);
+      padding: clamp(26px, 5vw, 54px);
       display: grid;
-      gap: 22px;
+      gap: 18px;
       text-align: center;
     }
 
@@ -102,15 +114,29 @@
 
     .topline .rule{
       height: 1px;
-      width: clamp(36px, 10vw, 120px);
+      width: clamp(40px, 10vw, 140px);
       background: linear-gradient(90deg, transparent, var(--line), transparent);
+    }
+
+    /* świeca - minimalny rysunek */
+    .candle-wrap{
+      display: grid;
+      place-items: center;
+      margin-top: 6px;
+      margin-bottom: 4px;
+      opacity: 0.92;
+    }
+    .candle{
+      width: min(220px, 60vw);
+      height: auto;
+      filter: drop-shadow(0 10px 26px rgba(0,0,0,0.55));
     }
 
     h1{
       margin: 0;
       font-family: "Cormorant Garamond", serif;
       font-weight: 600;
-      font-size: clamp(34px, 4.8vw, 54px);
+      font-size: clamp(34px, 4.7vw, 56px);
       letter-spacing: 0.02em;
       line-height: 1.05;
     }
@@ -125,14 +151,14 @@
     }
 
     .divider{
-      margin: 10px auto 4px;
-      width: min(520px, 85%);
+      margin: 10px auto 6px;
+      width: min(560px, 86%);
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--line), transparent);
     }
 
     .details{
-      width: min(520px, 92%);
+      width: min(560px, 94%);
       margin: 0 auto;
       border: 1px solid var(--line-2);
       border-radius: 18px;
@@ -152,13 +178,13 @@
     }
 
     .row + .row{
-      border-top: 1px solid rgba(246, 241, 231, 0.08);
+      border-top: 1px solid rgba(231,214,188,0.10);
       padding-top: 14px;
       margin-top: 2px;
     }
 
     .label{
-      color: var(--muted);
+      color: rgba(247,241,232,0.62);
       font-size: 12px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -173,7 +199,7 @@
     .footer{
       margin-top: 10px;
       padding-top: 18px;
-      color: var(--muted);
+      color: rgba(247,241,232,0.62);
       font-family: "Cormorant Garamond", serif;
       font-size: clamp(14px, 1.8vw, 18px);
       letter-spacing: 0.02em;
@@ -182,7 +208,7 @@
 
     .footer em{
       font-style: italic;
-      color: rgba(246, 241, 231, 0.78);
+      color: rgba(231,214,188,0.78);
     }
 
     /* Subtle corner marks */
@@ -190,7 +216,7 @@
       position:absolute;
       width: 46px;
       height: 46px;
-      border: 1px solid rgba(246, 241, 231, 0.10);
+      border: 1px solid rgba(231,214,188,0.12);
       border-radius: 12px;
       transform: rotate(45deg);
       opacity: 0.55;
@@ -201,7 +227,6 @@
     .m3{ bottom: -10px; left: -10px; }
     .m4{ bottom: -10px; right: -10px; }
 
-    /* Mobile tweaks */
     @media (max-width: 520px){
       .details{ padding: 14px 12px; }
       .row{ padding: 8px 8px; }
@@ -226,8 +251,54 @@
           <span class="rule" aria-hidden="true"></span>
         </div>
 
+        <!-- Minimalistyczna świeca (SVG) -->
+        <div class="candle-wrap" aria-hidden="true">
+          <svg class="candle" viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
+            <!-- delikatne tło ryciny -->
+            <defs>
+              <linearGradient id="ink" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="rgba(231,214,188,0.55)"/>
+                <stop offset="1" stop-color="rgba(231,214,188,0.15)"/>
+              </linearGradient>
+              <radialGradient id="flame" cx="50%" cy="45%" r="60%">
+                <stop offset="0" stop-color="rgba(231,214,188,0.60)"/>
+                <stop offset="1" stop-color="rgba(122,82,52,0.10)"/>
+              </radialGradient>
+            </defs>
+
+            <!-- linia ozdobna -->
+            <path d="M24 112 C70 90, 110 90, 160 112 C210 134, 250 134, 296 112"
+                  fill="none" stroke="rgba(231,214,188,0.18)" stroke-width="1.2"/>
+
+            <!-- świeca -->
+            <rect x="148" y="56" width="24" height="56" rx="10"
+                  fill="none" stroke="url(#ink)" stroke-width="1.6"/>
+            <path d="M148 72 C156 68, 164 68, 172 72" fill="none"
+                  stroke="rgba(231,214,188,0.18)" stroke-width="1.1"/>
+
+            <!-- knot -->
+            <path d="M160 50 C160 56, 160 56, 160 58" stroke="rgba(231,214,188,0.40)" stroke-width="1.4" fill="none"/>
+
+            <!-- płomień -->
+            <path d="M160 22
+                     C152 30, 150 42, 160 50
+                     C170 42, 168 30, 160 22Z"
+                  fill="url(#flame)" stroke="rgba(231,214,188,0.30)" stroke-width="1.2"/>
+
+            <!-- delikatna aura -->
+            <circle cx="160" cy="42" r="26" fill="rgba(122,82,52,0.10)"/>
+            <circle cx="160" cy="42" r="36" fill="rgba(122,82,52,0.06)"/>
+
+            <!-- drobne “gwiazdki” / kurz w powietrzu -->
+            <circle cx="92" cy="38" r="1.2" fill="rgba(231,214,188,0.25)"/>
+            <circle cx="234" cy="30" r="1.0" fill="rgba(231,214,188,0.20)"/>
+            <circle cx="256" cy="52" r="1.1" fill="rgba(231,214,188,0.18)"/>
+            <circle cx="70" cy="54" r="1.0" fill="rgba(231,214,188,0.16)"/>
+          </svg>
+        </div>
+
         <header>
-          <h1>Voucher Urodzinowy</h1>
+          <h1>Wszystkiego najlepszego</h1>
           <div class="subtitle">Dla Dominiki</div>
         </header>
 
@@ -259,4 +330,3 @@
   </main>
 </body>
 </html>
-
