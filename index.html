@@ -28,7 +28,7 @@
 
       --shadow: rgba(0, 0, 0, 0.62);
 
-      /* “candle glow” – ciepły bursztyn */
+      /* candle glow – ciepły bursztyn */
       --glow-1: rgba(176, 122, 74, 0.22);
       --glow-2: rgba(231, 214, 188, 0.12);
     }
@@ -80,6 +80,19 @@
       background: linear-gradient(180deg, var(--paper) 0%, transparent 72%);
     }
 
+    /* ✅ Twoje zdjęcie jako bardzo przezroczyste tło */
+    .bgimg{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.09; /* <--- przezroczystość zdjęcia */
+      filter: blur(1.4px) contrast(1.05) saturate(0.85);
+      transform: scale(1.04);
+      pointer-events: none;
+    }
+
     /* premium warstwy tła: winieta + glow + “papier” */
     .voucher::before{
       content:"";
@@ -88,13 +101,13 @@
       background:
         radial-gradient(980px 560px at 50% 14%, rgba(231,214,188,0.10), transparent 60%),
         radial-gradient(820px 520px at 20% 78%, rgba(176,122,74,0.16), transparent 58%),
-        radial-gradient(1100px 740px at 85% 88%, rgba(0,0,0,0.72), transparent 55%),
+        radial-gradient(1100px 740px at 85% 88%, rgba(0,0,0,0.74), transparent 55%),
         linear-gradient(180deg, rgba(231,214,188,0.04), transparent 70%);
       opacity: 0.98;
       pointer-events:none;
     }
 
-    /* ✅ “poświata świecy” – NIE pokazujemy świecy, tylko światło */
+    /* ✅ poświata świecy (światło bez świecy) */
     .voucher::after{
       content:"";
       position:absolute;
@@ -132,7 +145,6 @@
       background: linear-gradient(90deg, transparent, var(--line), transparent);
     }
 
-    /* delikatne “emboss” w typografii */
     h1{
       margin: 0;
       font-family: "Cormorant Garamond", serif;
@@ -247,6 +259,7 @@
       .row{ padding: 8px 8px; }
       .value{ font-size: 15px; }
       .topline{ font-size: 11px; letter-spacing: 0.24em; }
+      .bgimg{ opacity: 0.07; }
     }
   </style>
 </head>
@@ -254,6 +267,9 @@
 <body>
   <main class="wrap">
     <section class="voucher" aria-label="Voucher urodzinowy">
+      <!-- ✅ zdjęcie w tle (przezroczyste) -->
+      <img class="bgimg" src="Brno-Catedral.png" alt="">
+
       <span class="mark m1"></span>
       <span class="mark m2"></span>
       <span class="mark m3"></span>
